@@ -1,0 +1,20 @@
+// C++ code
+//
+#include<Stepper.h>
+const int stepsperevolution=200;
+Stepper myStepper(stepsperevolution,8,9,10,11);
+int stepcount=0;
+void setup()
+{
+}
+
+void loop()
+{
+ int sensorReading=analogRead(A0);
+  int motorspeed=map(sensorReading,0,1023,0,100);
+  if(motorspeed>040){
+    myStepper.setSpeed(motorspeed);
+    myStepper.step(stepsperevolution/100);
+  }
+  
+}
