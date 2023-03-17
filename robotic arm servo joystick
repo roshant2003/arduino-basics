@@ -1,0 +1,22 @@
+#include <Servo.h>  
+ const int servo1 = 8;    // first servo  
+ const int servo2 = 9;    // second servo  
+ const int joyx = 0;      // joystick module  A0 pin 
+ const int joyy = 1;      // joystick module  A1 pin
+ int servoVal;      // read the value from the analog pin  
+ Servo myservo1; // create servo object to control a servo  
+ Servo myservo2;   
+ void setup() {  
+  Serial.begin(9600);  
+  myservo1.attach(servo1);  
+  myservo2.attach(servo2);   
+ }  
+ void loop(){  
+   servoVal = analogRead(joyx);       
+   servoVal = map(servoVal, 0, 1023, 0, 180);  // set the position of the first servo   
+   myservo2.write(servoVal);              
+   servoVal = analogRead(joyy);        
+   servoVal = map(servoVal, 0, 1023, 70, 180);   // set the position of the second servo  
+   myservo1.write(servoVal);               
+   delay(15);                      
+ }  
