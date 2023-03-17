@@ -1,0 +1,26 @@
+// C++ code
+//
+#include<LiquidCrystal.h>
+LiquidCrystal led(7,6,5,4,3,2);
+float temp;
+int baseLine=30;
+void setup()
+{
+  pinMode(A0, INPUT);
+  led.begin(16,2);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  led.setCursor(0,0);
+  temp=(float)analogRead(A0);
+  Serial.println(temp);
+  temp=temp/1024;
+  temp=temp*5;
+  temp=(temp-0.5)*100.0;
+  led.print("Temp=");
+  led.print(temp);
+  led.print("C");
+  led.setCursor(0,1);
+}
